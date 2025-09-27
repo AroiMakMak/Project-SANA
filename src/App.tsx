@@ -99,61 +99,61 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors">
+      <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14 sm:h-16">
             <div className="flex items-center gap-3">
-              <div className=" rounded-lg">
-                {/* <Brain className="w-6 h-6 text-white" /> */}
-                <img src="/sana.png" alt="SANA Logo" className="w-14 h-14 rounded-md" />
+              <div className="p-1.5 sm:p-2 bg-blue-600 rounded-lg">
+                <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900 dark:text-white">{t('app.title')}</h1>
-                <p className="text-sm text-gray-600 dark:text-gray-300">{t('app.subtitle')}</p>
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{t('app.title')}</h1>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 hidden sm:block">{t('app.subtitle')}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setShowSettings(true)}
-                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
-                <Settings className="w-5 h-5" />
+                <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium ${
+              <div className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium ${
                 isSimulationRunning
                   ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' 
                   : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
               }`}>
-                <Moon className="w-4 h-4" />
-                {isSimulationRunning ? t('status.monitoring') : t('status.ready')}
+                <Moon className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">{isSimulationRunning ? t('status.monitoring') : t('status.ready')}</span>
+                <span className="sm:hidden">{isSimulationRunning ? 'ON' : 'OFF'}</span>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
         {/* Navigation Tabs */}
-        <div className="flex space-x-1 mb-8 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
+        <div className="flex space-x-1 mb-4 sm:mb-6 lg:mb-8 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg overflow-x-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
                 activeTab === tab.id
                   ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-sm'
                   : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
-              <tab.icon className="w-4 h-4" />
-              {tab.label}
+              <tab.icon className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{tab.label}</span>
             </button>
           ))}
         </div>
 
         {/* Tab Content */}
         {activeTab === 'monitor' && (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <AudioWaveform
               volume={state.currentVolume}
               isRecording={isSimulationRunning}
@@ -164,7 +164,7 @@ function App() {
         )}
 
         {activeTab === 'analytics' && (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <SleepMetricsDashboard
               respiratory={latestSession?.metrics?.respiratory}
               snoring={latestSession?.metrics?.snoring}
@@ -180,7 +180,21 @@ function App() {
         )}
 
 
-        
+        {/* System Information */}
+        <div className="mt-6 sm:mt-8 p-3 sm:p-4 bg-blue-50 dark:bg-blue-900 rounded-lg border border-blue-200 dark:border-blue-700">
+          <div className="flex items-start gap-3">
+            <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-blue-800 dark:text-blue-200">
+              <p className="font-medium mb-1">{t('system.info')}</p>
+              <p className="mb-2">
+                {t('system.description')}
+              </p>
+              <p className="text-xs sm:text-xs text-blue-700 dark:text-blue-300">
+                {t('system.features')}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />

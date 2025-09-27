@@ -11,7 +11,7 @@ export const useSimulation = () => {
       'apnea', 'snoring', 'movement', 'stimulation'
     ];
     
-    const weights = [0.1, 0.5, 0.3, 0.1]; // Probability weights
+    const weights = [0.15, 0.45, 0.35, 0.05]; // Probability weights - more realistic distribution
     const random = Math.random();
     let cumulativeWeight = 0;
     let selectedType = eventTypes[0];
@@ -27,13 +27,13 @@ export const useSimulation = () => {
     return {
       type: selectedType,
       timestamp: Date.now(),
-      duration: selectedType === 'apnea' ? 
-        Math.random() * 20000 + 10000 : // 10-30 seconds
+      duration: selectedType === 'apnea' ?
+        Math.random() * 25000 + 10000 : // 10-35 seconds (AASM compliant)
         selectedType === 'snoring' ?
-        Math.random() * 5000 + 2000 : // 2-7 seconds
+        Math.random() * 8000 + 2000 : // 2-10 seconds
         selectedType === 'stimulation' ?
-        Math.random() * 200 + 50 : // 50-250ms
-        Math.random() * 3000 + 500, // 0.5-3.5 seconds for movement
+        Math.random() * 150 + 50 : // 50-200ms
+        Math.random() * 5000 + 500, // 0.5-5.5 seconds for movement
       intensity: Math.random() * 0.8 + 0.2, // 0.2-1.0
       frequency: selectedType === 'snoring' ? Math.random() * 190 + 110 : undefined,
     };
@@ -49,7 +49,7 @@ export const useSimulation = () => {
         const event = generateRandomEvent();
         setSimulatedEvents(prev => [...prev, event]);
       }
-    }, 2000); // Generate events every 2 seconds
+    }, 3000); // Generate events every 3 seconds (more realistic)
   }, [isRunning, generateRandomEvent]);
 
   const stopSimulation = useCallback(() => {

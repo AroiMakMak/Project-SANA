@@ -24,17 +24,17 @@ export const SleepMetricsDashboard: React.FC<SleepMetricsDashboardProps> = ({
     metrics: Array<{ label: string; value: string; unit?: string; status?: 'normal' | 'warning' | 'alert' }>;
     color: string;
   }> = ({ title, icon, metrics, color }) => (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
       <div className={`flex items-center gap-3 mb-4 text-${color}-600`}>
         {icon}
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
       </div>
       <div className="space-y-3">
         {metrics.map((metric, index) => (
           <div key={index} className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-300">{metric.label}</span>
+            <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 flex-1 pr-2">{metric.label}</span>
             <div className="flex items-center gap-2">
-              <span className={`font-medium ${
+              <span className={`font-medium text-xs sm:text-sm ${
                 metric.status === 'alert' ? 'text-red-600' :
                 metric.status === 'warning' ? 'text-yellow-600' :
                 'text-gray-900 dark:text-white'
@@ -42,7 +42,7 @@ export const SleepMetricsDashboard: React.FC<SleepMetricsDashboardProps> = ({
                 {metric.value}
               </span>
               {metric.unit && (
-                <span className="text-xs text-gray-500 dark:text-gray-400">{metric.unit}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">{metric.unit}</span>
               )}
             </div>
           </div>
@@ -52,7 +52,7 @@ export const SleepMetricsDashboard: React.FC<SleepMetricsDashboardProps> = ({
   );
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       {/* Respiratory Metrics */}
       <MetricCard
         title={t('metrics.respiratory')}

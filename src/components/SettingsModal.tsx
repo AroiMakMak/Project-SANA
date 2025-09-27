@@ -101,105 +101,105 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
     addSimulatedEvents([event]);
   };
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
             {t('settings.title')}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
           {/* Theme Setting */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">
               {t('settings.theme')}
             </label>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={toggleTheme}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+                className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg border transition-colors text-sm ${
                   theme === 'light'
                     ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-300'
                     : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                <Sun className="w-4 h-4" />
+                <Sun className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('settings.light')}
               </button>
               <button
                 onClick={toggleTheme}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+                className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg border transition-colors text-sm ${
                   theme === 'dark'
                     ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-300'
                     : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                <Moon className="w-4 h-4" />
+                <Moon className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('settings.dark')}
               </button>
             </div>
           </div>
 
           {/* Simulation Settings */}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-4 sm:pt-6">
             <div className="flex items-center gap-3 mb-4">
-              <TestTube className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <TestTube className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
                 {t('sim.title')}
               </h3>
               <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${isSimulationRunning ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`} />
-                <span className="text-sm text-gray-600 dark:text-gray-300">
+                <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${isSimulationRunning ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`} />
+                <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                   {isSimulationRunning ? t('sim.running') : t('sim.stopped')}
                 </span>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-4">
               <button
                 onClick={generateSampleSession}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
               >
-                <Zap className="w-4 h-4" />
+                <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('sim.generate.session')}
               </button>
               <button
                 onClick={clearSimulatedEvents}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
               >
-                <RotateCcw className="w-4 h-4" />
+                <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('sim.clear.events')}
               </button>
             </div>
 
             {/* Real-time Controls */}
             <div className="mb-4">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t('sim.realtime')}</h4>
-              <div className="flex items-center gap-3 mb-3">
+              <h4 className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">{t('sim.realtime')}</h4>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 mb-3">
                 <button
                   onClick={toggleSimulation}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  className={`flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm ${
                     isSimulationRunning 
                       ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300' 
                       : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300'
                   }`}
                 >
-                  {isSimulationRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  {isSimulationRunning ? <Pause className="w-3 h-3 sm:w-4 sm:h-4" /> : <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
                   {isSimulationRunning ? t('sim.stop') : t('sim.start')} {t('sim.auto.events')}
                 </button>
                 <button
                   onClick={generateRealtimeEvent}
-                  className="flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors dark:bg-purple-900 dark:text-purple-300"
+                  className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors dark:bg-purple-900 dark:text-purple-300 text-sm"
                 >
-                  <Zap className="w-4 h-4" />
+                  <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
                   {t('sim.manual.event')}
                 </button>
               </div>
@@ -207,7 +207,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
 
             {/* Event Type Selection */}
             <div className="mb-4">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t('sim.event.types')}</h4>
+              <h4 className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">{t('sim.event.types')}</h4>
               <div className="grid grid-cols-2 gap-2">
                 {Object.entries(selectedEventTypes).map(([type, enabled]) => (
                   <label key={type} className="flex items-center gap-2 cursor-pointer">
@@ -220,7 +220,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
                       }))}
                       className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <span className="text-sm capitalize text-gray-700 dark:text-gray-300">{type}</span>
+                    <span className="text-xs sm:text-sm capitalize text-gray-700 dark:text-gray-300">{type}</span>
                   </label>
                 ))}
               </div>
@@ -228,7 +228,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
 
             {/* Intensity Control */}
             <div className="mb-4">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+              <h4 className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">
                 {t('sim.intensity')}: {Math.round(eventIntensity * 100)}%
               </h4>
               <input
@@ -244,40 +244,40 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
           </div>
           {/* Language Setting */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">
               {t('settings.language')}
             </label>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setLanguage('th')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+                className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg border transition-colors text-sm ${
                   language === 'th'
                     ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-300'
                     : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('settings.thai')}
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+                className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg border transition-colors text-sm ${
                   language === 'en'
                     ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-300'
                     : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('settings.english')}
               </button>
             </div>
           </div>
         </div>
 
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 dark:border-gray-700">
           <button
             onClick={onClose}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
           >
             {language === 'th' ? 'ปิด' : 'Close'}
           </button>

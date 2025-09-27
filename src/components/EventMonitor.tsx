@@ -58,25 +58,25 @@ export const EventMonitor: React.FC<EventMonitorProps> = ({ events }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('events.title')}</h3>
-        <span className="text-sm text-gray-500 dark:text-gray-400">{t('events.realtime')}</span>
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{t('events.title')}</h3>
+        <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 hidden sm:inline">{t('events.realtime')}</span>
       </div>
 
       {/* Event counters */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6">
         {[
           { type: 'apnea', label: t('events.apnea'), color: 'red' },
           { type: 'snoring', label: t('events.snoring'), color: 'yellow' },
           { type: 'movement', label: t('events.movement'), color: 'green' },
           { type: 'stimulation', label: t('events.stimulation'), color: 'purple' },
         ].map(({ type, label, color }) => (
-          <div key={type} className={`bg-${color}-50 dark:bg-${color}-900 rounded-lg p-3 text-center`}>
-            <div className={`text-${color}-600 text-2xl font-bold`}>
+          <div key={type} className={`bg-${color}-50 dark:bg-${color}-900 rounded-lg p-2 sm:p-3 text-center`}>
+            <div className={`text-${color}-600 text-lg sm:text-2xl font-bold`}>
               {eventCounts[type] || 0}
             </div>
-            <div className={`text-${color}-700 dark:text-${color}-300 text-xs font-medium mt-1`}>
+            <div className={`text-${color}-700 dark:text-${color}-300 text-xs sm:text-xs font-medium mt-1`}>
               {label}
             </div>
           </div>
@@ -85,18 +85,18 @@ export const EventMonitor: React.FC<EventMonitorProps> = ({ events }) => {
 
       {/* Recent events list */}
       <div className="space-y-2">
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t('events.recent')}</h4>
-        <div className="max-h-48 overflow-y-auto space-y-2">
+        <h4 className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t('events.recent')}</h4>
+        <div className="max-h-32 sm:max-h-48 overflow-y-auto space-y-2">
           {recentEvents.length > 0 ? (
             recentEvents.map((event, index) => (
               <div
                 key={index}
-                className={`flex items-center justify-between p-3 rounded-lg border ${getEventColor(event.type)} dark:bg-opacity-20`}
+                className={`flex items-center justify-between p-2 sm:p-3 rounded-lg border ${getEventColor(event.type)} dark:bg-opacity-20`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   {getEventIcon(event.type)}
                   <div>
-                    <div className="font-medium text-sm">
+                    <div className="font-medium text-xs sm:text-sm">
                       {getEventLabel(event.type)}
                     </div>
                     <div className="text-xs opacity-75">
@@ -105,7 +105,7 @@ export const EventMonitor: React.FC<EventMonitorProps> = ({ events }) => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-medium text-sm">
+                  <div className="font-medium text-xs sm:text-sm">
                     {formatDuration(event.duration)}
                   </div>
                   <div className="text-xs opacity-75">
@@ -116,9 +116,9 @@ export const EventMonitor: React.FC<EventMonitorProps> = ({ events }) => {
             ))
           ) : (
             <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              <Activity className="w-8 h-8 mx-auto mb-2 opacity-30" />
-              <p className="text-sm">{t('events.none')}</p>
-              <p className="text-xs mt-1">{t('events.start.monitoring')}</p>
+              <Activity className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 opacity-30" />
+              <p className="text-xs sm:text-sm">{t('events.none')}</p>
+              <p className="text-xs mt-1 hidden sm:block">{t('events.start.monitoring')}</p>
             </div>
           )}
         </div>
